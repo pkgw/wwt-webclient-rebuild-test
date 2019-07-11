@@ -249,6 +249,8 @@
     <Content Include="css\webclient.less" />
     <Content Include="Web.config">
     </Content>
+    <Content Include="wwtwebclient.js" />
+    <Content Include="wwtwebclient.min.js" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

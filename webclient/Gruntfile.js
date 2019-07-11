@@ -1,4 +1,4 @@
-/// <binding ProjectOpened='watch' />
+/// <binding BeforeBuild='dist-js' ProjectOpened='watch' />
 /**!
    Gruntfile to perform wwt webclient less compilation,
    script concatenation/minification, and component updates
