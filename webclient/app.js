@@ -51,6 +51,7 @@ $(window).on('load', function() {
     wwt.resize();
     //load search data after everything else
     var scr = document.createElement('script');
-    scr.setAttribute("src", 'searchdata.min.js');
+    // XXX REBUILD HACK: hardcode absolute searchdata URL to get things limping along
+    scr.setAttribute("src", '//worldwidetelescope.org/webclient/searchdata.min.js');
     document.getElementsByTagName("head")[0].appendChild(scr);
 });
