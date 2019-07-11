@@ -1,0 +1,110 @@
+<div class="modal-header" data-movable="1" data-movable-target=".modal-dialog">
+  <i class="fa fa-close pull-right" ng-click="$hide()"></i><h5 localize="VO Cone Search / Registry Browser"></h5>
+</div>
+<div class="modal-body vo-cone-search" ng-controller="voConeSearch">
+  <div class="row message" ng-if="noResults">
+    <div class="col-md-12 no-results">
+      <a class="pull-right" ng-click="hideBanner()" localize="Close message" localize-only="title"><i class="fa fa-close"></i> </a>
+      <span  localize="No results found using the search criteria"></span>
+    </div>
+  </div>
+  <div class="row" style="margin-bottom:5px">
+    <div class="col-md-4 form-group-sm">
+      <label localize="Base URL"></label>
+      <input type="search" class="form-control" ng-class="{disabled:fromRegistry}" ng-model="searchBaseURL">
+      <div class="checkbox">
+        <label data-ng-class="{checked:fromRegistry}">
+          <input type="checkbox" ng-model="fromRegistry"/>&nbsp;
+          <span localize="From Registry"></span>
+        </label>
+      </div>
+    </div>
+    <div class="col-md-5">
+      <div class="row nested">
+        <div class="col-md-3 form-group-sm">
+          <label localize="RA"></label>
+          <input type="number" class="form-control" ng-model="RA">
+        </div>
+        <div class="col-md-3 form-group-sm">
+          <label localize="Dec"></label>
+          <input type="number" class="form-control" ng-model="Dec"/>
+        </div>
+        <div class="col-md-3 form-group-sm">
+          <label localize="Search Radius"></label>
+          <input type="number" class="form-control" ng-model="Fov" max="60" min="0"/>
+        </div>
+        <div class="col-md-3 form-group-sm">
+          <label localize="Verbosity"></label>
+          <select class="form-control" ng-value="verbosity">
+            <option value="1" localize="Low"></option>
+            <option value="2" localize="Medium"></option>
+            <option value="3" localize="High"></option>
+          </select>
+        </div>
+        <div class="col-md-12" style="margin-top:-3px;">
+          <div class="checkbox">
+            <label data-ng-class="{checked:fromView}">
+              <input type="checkbox" ng-model="fromView"/>&nbsp;
+              <span localize="From View"></span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="checkbox">
+        <label data-ng-class="{checked:coneSearch}">
+          <input type="checkbox" ng-model="coneSearch"/>&nbsp;
+          <span localize="Catalog (VO Cone Search)"></span>
+        </label>
+      </div>
+      <div class="checkbox">
+        <label data-ng-class="{checked:siapImages}">
+          <input type="checkbox" ng-model="siapImages"/>&nbsp;
+          <span localize="Images (VO SIAP)"></span>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 form-group-sm">
+      <label localize="NVO Registry Title Like"></label>
+      <input type="text" class="form-control" ng-model="regTitle">
+    </div>
+    <div class="col-md-6">
+      <label>&nbsp;</label><br>
+      <a class="btn" localize="NVO Registry Search" ng-click="searchRegistry()"></a>
+    </div>
+    <div class="col-md-2 search-buttons">
+      <a class="btn" ng-class="{disabled:hiliteIndex < -1}" localize="Search" ng-click="search()"></a><br>
+      <a class="btn" localize="Close" ng-click="$hide()"></a>
+    </div>
+  </div>
+  <div class="results">
+    <table class="table">
+      <thead>
+      <tr>
+        <th localize="Title" style="width:30%"></th>
+        <th localize="ServiceType" style="width:12%"></th>
+        <th localize="Type" style="width:11%"></th>
+        <th localize="Publisher" style="width:15%"></th>
+        <th localize="Wave Band" style="width:15%"></th>
+        <th localize="Identifier" style="width:15%"></th>
+        <th localize="Max Radius" style="width:10%"></th>
+        <th localize="Max Rows" style="width:10%"></th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr ng-if="!table">
+        <td ng-repeat="c in displayColumns">-</td>
+      </tr>
+      <tr ng-if="table.rows" ng-repeat="r in table.rows track by $index" ng-click="hilite(r,$index)"
+          ng-class="{hilite:$index==hiliteIndex}">
+        <td ng-repeat="c in displayColumns">
+          <div class="ellipsize" title="{{c}}: {{getData(r,c)}}">{{getData(r,c)}}</div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
