@@ -44,7 +44,11 @@ var wwt = {
         wwt.smallVP = ($(window).height() < 600 || $(window).width() < 700);
         wwt.definitelyMobile = wwt.smallVP && ($(window).height() < 900 && $(window).width() < 600);
     },
-    smallVP:false
+
+    smallVP: false,
+
+    // XXX REBUILD HACK: setting for WTML files etc.
+    resourceBaseUrl: '//worldwidetelescope.org/webclient/'
 };
 
 $(window).on('load', function() {

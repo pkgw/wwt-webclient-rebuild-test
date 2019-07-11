@@ -174,7 +174,7 @@
       var deferred = $q.defer();
 
       $.ajax({
-        url: wtmlPath + '?v=' + $('body').data('resVersion')
+        url: wwt.resourceBaseUrl + wtmlPath + '?v=' + $('body').data('resVersion')
       }).done(function () {
         var wtml = $($.parseXML(arguments[0]));
         wtml.find('Place').each(function (i, place) {
