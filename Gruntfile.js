@@ -196,6 +196,6 @@ module.exports = function (grunt) {
     // Minify the generated search data (rare - internal only)
     grunt.registerTask('dist-searchdata', ['uglify:searchData']);
 
-    // CSS  (csscomb seems like too much, so commented out for now)
-    grunt.registerTask('dist-css', ['less:compileCore', 'autoprefixer:core', /*'csscomb:dist',*/'cssmin:minifyCore']);
+    // CSS
+    grunt.registerTask('dist-css', ['less:compileCore', 'autoprefixer:core', 'cssmin:minifyCore']);
 };
