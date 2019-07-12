@@ -1,1 +1,8 @@
 .vs/
+/bin/
+/node_modules/
+/obj/
+/package-lock.json
+/webclient.csproj.user
+/wwtwebclient.js
+/wwtwebclient.min.js
